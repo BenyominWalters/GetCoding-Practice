@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>To-Do List App</title>
+
+<style>
+    .myApp {
+        background-color: rgb(189, 255, 255);
+        margin: 0 auto;
+        width: 45em;
+        height: 50em;
+        
+    }
+    h1 {
+        text-align: center;
+        padding: 22px;
+        background-color: #633a10;
+        color: white;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .taskBox {
+        display: block;
+        padding: 6px 12px;
+        margin: auto;
+        font-size: 16px;
+    }
+    .wrapper {
+        text-align: center;
+    }
+    .btn {
+        background-color: #765007;
+        border: none;
+        color: white;
+        padding: 15px 80px;
+        /* border-radius: 12px; */
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+    }
+    .btn:hover {
+        background-color: #633a10;
+        color: white;
+    }
+    .list {
+        text-align: center;
+        font-size: 16pt;
+    }
+</style>
+
+<script>
+    function addItem() {
+        var newItem = document.createElement("div");
+        newItem.innerHTML = document.getElementById("taskBox").value;
+        newItem.onclick = removeItem;
+        document.getElementById("list").appendChild(newItem);
+        document.getElementById("taskBox").value=""
+        saveList();
+    }
+    function removeItem() {
+        document.getElementById("list").removeChild(this);
+        saveList();
+    }
+    function saveList() {
+        localStorage.storedList = document.getElementById("list").innerHTML;
+    }
+    function loadList() {
+        document.getElementById("list").innerHTML = localStorage.storedList;
+        for(var i = 0; i < list.children.length; i++) {
+            list.children[i].onclick = removeItem;
+        }
+    }
+</script>
+</head>
+<body>
+    <div class="myApp">
+        <h1>Special Exhibition To-Do List</h1>
+        <br/>
+        <input id="taskBox" class="taskBox" type="text" placeholder="Type here to add a task" />
+        <br/>
+        <div class="wrapper">
+            <input id="addButton" class="btn" type="button" value="Add item" onclick="addItem();" />
+        </div>
+        <br/>
+        <div id="list" class="list"></div>
+    </div>
+    
+    <!-- This script is put after the HTML to be sure that it has already rendered the page. Otherwise, it would not be able to access the DOM elements. -->
+    <script>
+        if(localStorage.storedList) {
+            loadList();
+        }
+    </script>
+</body>
+</html>
