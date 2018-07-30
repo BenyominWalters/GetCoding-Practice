@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Timers</title>
+    <style>
+        #title {
+            background-color: green;
+            color: white;
+            text-align: center;
+            width: 40%;
+            padding: 10px;
+            margin: 0px auto;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-weight: bolder;
+            font-size: 20pt;
+        }
+        #number {
+            padding: 20px;
+            border-style: solid;
+            border-color: green;
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            margin: 0 auto;
+            text-align: center;
+            font-weight: bold; 
+            font-size: 16pt;
+        }
+    </style>
+    <script>
+        var count = 0;
+        function updateCount() {
+            count = count + 1;
+            document.getElementById("number").innerHTML=count;
+            setTimeout(updateCount, 1000);
+        }
+    </script>
+</head>
+<body>
+    <div id="title">Counter</div>
+    <br/>
+    <div id="number">
+    </div>
+    <script>
+        updateCount();
+    </script>
+</body>
+</html>
